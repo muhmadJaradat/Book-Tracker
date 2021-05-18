@@ -32,7 +32,7 @@ export class FormModal extends Component {
 
   <Form.Group >
     <Form.Label>Book name</Form.Label>
-    <Form.Control type="text" placeholder="Book name" />
+    <Form.Control type="text" placeholder="Book name" onChange={(e)=> this.props.updateBookName(e)} />
   </Form.Group>
   <Form.Group >
     <Form.Label>Book description</Form.Label>

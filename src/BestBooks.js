@@ -19,11 +19,15 @@ class MyFavoriteBooks extends React.Component {
       books: [],
       loading: false,
       showModalForm: false,
+      bookName:'',
+      bookDescription:'',
     };
   }
   handleShow = () => this.setState({ showModalForm: true })
-
   handleClose = () => this.setState({ showModalForm: false });
+
+  updateBookName = (e)=> this.setState({bookName: e.target.value});
+  updateBookDescription = (e)=> this.setState({bookDescription: e.target.value});
   getBooks = async () => {
     const { user } = this.props.auth0;
     try {
