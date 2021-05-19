@@ -3,13 +3,12 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-
-export class FormModal extends Component {
+export class UpdateForm extends Component {
     render() {
         return (
             <div>
-                <Modal
-      show={this.props.showModalForm}
+                 <Modal
+      show={this.props.showForTheUpdateForm}
       onHide={this.props.handleClose}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -17,11 +16,11 @@ export class FormModal extends Component {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          New Book Form
+          Update Book Data Form
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <Form onSubmit={(e)=>this.props.addBook(e)}>
+      <Form onSubmit={(e)=>this.props.updateBooks(e)}>
   <Form.Group controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter email" value={this.props.email} />
@@ -32,11 +31,11 @@ export class FormModal extends Component {
 
   <Form.Group >
     <Form.Label>Book name</Form.Label>
-    <Form.Control  placeholder="Book name" onChange={(e)=> this.props.updateBookName(e)} type="text" />
+    <Form.Control  placeholder="Book name" onChange={(e)=> this.props.updateBookName(e)} type="text" value={this.props.bookName} />
   </Form.Group>
   <Form.Group >
     <Form.Label>Book description</Form.Label>
-    <Form.Control  placeholder="Book description" onChange={(e)=>this.props.updateBookDescription(e)} type="text"/>
+    <Form.Control  placeholder="Book description" onChange={(e)=>this.props.updateBookDescription(e)} type="text" value={this.props.bookDescription} />
   </Form.Group>
   <Button variant="primary" type="submit">
     Submit
@@ -52,4 +51,4 @@ export class FormModal extends Component {
     }
 }
 
-export default FormModal
+export default UpdateForm
