@@ -24,6 +24,7 @@ class MyFavoriteBooks extends React.Component {
       bookDescription: '',
       status:'',
       showForTheUpdateForm:false,
+      index:0,
     };
   }
   handleShow = () => this.setState({ showModalForm: true })
@@ -79,18 +80,20 @@ class MyFavoriteBooks extends React.Component {
     await axios.delete(`${process.env.REACT_APP_MY_SERVER_URL}/books/${index}`, {params: query});
   };
 
-  updateForm = (i) => {
+  updatingForm = (idx) => {
+    
     const newBooks = this.state.books.filter((value, index) => {
-      return i === index
+      return idx === index
     });
     // console.log(this.state.books);
     this.setState({
-      index: i,
+      index:idx,
       bookName: newBooks.name,
       bookDescription: newBooks.description,
       bookStatus:newBooks.status,
       showForTheUpdateForm: true,
     });
+    console.log('index',this.state.index);
   }
 
 
@@ -104,6 +107,7 @@ class MyFavoriteBooks extends React.Component {
       status: this.state.bookStatus,
       email: this.state.email
   }
+  
   const updatedBooks = await axios.put(`${process.env.REACT_APP_MY_SERVER_URL}/books/${this.state.index}`, reqBody);
   this.setState({
     books: updatedBooks.data
@@ -163,7 +167,7 @@ render() {
 
                   </Card.Body>
                   <Button onClick={() => this.removeBook(idx)} variant="danger">Delete!</Button>
-                  <Button style={{marginTop:'5px'}} onClick={(i) => this.updateForm(i)} variant="success"> Update!</Button>
+                  <Button style={{marginTop:'5px'}} onClick={() => this.updatingForm(idx)} variant="success"> Update!</Button>
                 </Card>
                 </ListGroup>
               }
